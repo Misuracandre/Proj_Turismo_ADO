@@ -155,6 +155,24 @@ namespace Proj_Turismo_ADO.Services
             }
             return hotels;
         }
+
+        public void UpdateHotel(Hotel hotel)
+        {
+            using (SqlConnection connection = new SqlConnection(strConn))
+            {
+                string sql = "UPDATE Hotel SET Id = @Id, Name = @Name, IdAddress = @IdAddress, Value = @Value WHERE Id = @Id";
+
+                SqlCommand command = new SqlCommand(sql, connection);
+
+                command.Parameters.AddWithValue("@Id", hotel.Id);
+                command.Parameters.AddWithValue("@Name", hotel.Name);
+                command.Parameters.AddWithValue("@IdAddress", hotel.IdAddress.Id);
+                command.Parameters.AddWithValue("@Value", hotel.Value);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
     }
 }
 

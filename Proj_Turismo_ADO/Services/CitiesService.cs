@@ -69,5 +69,21 @@ namespace Proj_Turismo_ADO.Services
             }
             return cities;
         }
+
+        public void UpdateCity(City city)
+        {
+            using (SqlConnection connection = new SqlConnection(strConn))
+            {
+                string sql = "UPDATE City SET Id = @Id, Description = @Description WHERE Id = @Id";
+
+                SqlCommand command = new SqlCommand(sql, connection);
+
+                command.Parameters.AddWithValue("@Id", city.Id);
+                command.Parameters.AddWithValue("@Description", city.Description);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
     }
 }

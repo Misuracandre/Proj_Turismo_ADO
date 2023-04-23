@@ -120,5 +120,26 @@ namespace Proj_Turismo_ADO.Services
             }
             return addresses;
         }
+
+        public void UpdateAddress(Address address)
+        {
+            using (SqlConnection connection = new SqlConnection(strConn))
+            {
+                string sql = "UPDATE Address SET Street = @Street, Number = @Number, Nighborhood = @Neighborhood, ZipCode = @ZipCode, Extension = @Extension, IdCity = @IdCity WHERE Id = @Id";
+                
+                SqlCommand command = new SqlCommand(sql, connection);
+                
+                command.Parameters.AddWithValue("@Street", address.Street);
+                command.Parameters.AddWithValue("@Number", address.Number);
+                command.Parameters.AddWithValue("@Neighborhood", address.Neighborhood);
+                command.Parameters.AddWithValue("@ZipCode", address.ZipCode);
+                command.Parameters.AddWithValue("@Extension", address.Extension);
+                command.Parameters.AddWithValue("@IdCity", address.IdCity.Id);
+                command.Parameters.AddWithValue("@Id", address.Id);
+                
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
     }
 }

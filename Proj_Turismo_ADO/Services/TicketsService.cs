@@ -217,6 +217,25 @@ namespace Proj_Turismo_ADO.Services
             }
             return tickets;
         }
+
+        public void UpdateTicket(Ticket ticket)
+        {
+            using (SqlConnection connection = new SqlConnection(strConn))
+            {
+                string sql = "UPDATE Ticket SET Id = @Id, IdOrigin = @IdOrigin, IdDestination = @IdDestination, IdClient = @IdClient, Value = @Value WHERE Id = @Id";
+
+                SqlCommand command = new SqlCommand(sql, connection);
+
+                command.Parameters.AddWithValue("@Id", ticket.Id);
+                command.Parameters.AddWithValue("@IdOrigin", ticket.IdOrigin.IdCity);
+                command.Parameters.AddWithValue("@IdDestination", ticket.IdDestination.IdCity);
+                command.Parameters.AddWithValue("@IdClient", ticket.IdClient.Id);
+                command.Parameters.AddWithValue("@Value", ticket.Value);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
     }
 }
 

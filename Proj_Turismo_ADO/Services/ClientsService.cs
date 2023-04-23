@@ -155,5 +155,23 @@ namespace Proj_Turismo_ADO.Services
             }
             return clients;
         }
+
+        public void UpdateClient(Client client)
+        {
+            using (SqlConnection connection = new SqlConnection(strConn))
+            {
+                string sql = "UPDATE Client SET Id = @Id, Name = @Name, Phone = @Phone, IdAddress = @IdAddress WHERE Id = @Id";
+
+                SqlCommand command = new SqlCommand(sql, connection);
+
+                command.Parameters.AddWithValue("@Id", client.Id);
+                command.Parameters.AddWithValue("@Name", client.Name);
+                command.Parameters.AddWithValue("@Phone", client.Phone);
+                command.Parameters.AddWithValue("@IdAddress", client.IdAddress.Id);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
     }
 }

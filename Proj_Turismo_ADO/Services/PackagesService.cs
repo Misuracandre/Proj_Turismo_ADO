@@ -329,5 +329,24 @@ namespace Proj_Turismo_ADO.Services
             }
             return packages;
         }
+
+        public void UpdatePackage(Package package)
+        {
+            using (SqlConnection connection = new SqlConnection(strConn))
+            {
+                string sql = "UPDATE Package SET Id = @Id, IdHotel = @IdHotel, IdTicket = @IdTicket, IdClient = @IdClient, Value = @Value WHERE Id = @Id";
+
+                SqlCommand command = new SqlCommand(sql, connection);
+
+                command.Parameters.AddWithValue("@Id", package.Id);
+                command.Parameters.AddWithValue("@IdHotel", package.IdHotel.Id);
+                command.Parameters.AddWithValue("@IdTicket", package.IdTicket.Id);
+                command.Parameters.AddWithValue("@IdClient", package.IdClient.Id);
+                command.Parameters.AddWithValue("@Value", package.Value);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
     }
 }
