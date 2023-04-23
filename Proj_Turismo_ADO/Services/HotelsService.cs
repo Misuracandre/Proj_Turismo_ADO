@@ -121,6 +121,7 @@ namespace Proj_Turismo_ADO.Services
             sb.Append("       a.Neighborhood AS AddressNeighborhood,");
             sb.Append("       a.ZipCode AS AddressZipCode,");
             sb.Append("       a.Extension  AS AddressExtension,");
+            sb.Append("       c.Id AS CityId");
             sb.Append("       c.Description AS CityDescription");
             sb.Append("  from Hotel h, ");
             sb.Append("  JOIN Address a ON h.IdAddress = a.Id");
@@ -145,6 +146,7 @@ namespace Proj_Turismo_ADO.Services
                     Extension = (string)dr["AddressExtension"],
                     IdCity = new City()
                     {
+                        Id = (int)dr["CityId"],
                         Description = (string)dr["CityDescription"]
                     }
                 };

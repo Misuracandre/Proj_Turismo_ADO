@@ -83,21 +83,22 @@ namespace Proj_Turismo_ADO.Services
         {
             List<Address> addresses = new();
 
-            StringBuilder sb = new StringBuilder(); 
+            StringBuilder sb = new StringBuilder();
             sb.Append("select a.Id, ");
             sb.Append("       a.Street, ");
             sb.Append("       a.Number, ");
             sb.Append("       a.Neighborhood, ");
             sb.Append("       a.ZipCode, ");
             sb.Append("       a.Extension, ");
+            sb.Append("       c.Id AS CityId, ");
             sb.Append("       c.Description AS CityDescription");
             sb.Append("  from Address a ");
             sb.Append("  JOIN City c ON a.IdCity = c.Id");
 
-            SqlCommand commandSelect = new(sb.ToString(), conn);  
-            SqlDataReader dr = commandSelect.ExecuteReader(); 
+            SqlCommand commandSelect = new(sb.ToString(), conn);
+            SqlDataReader dr = commandSelect.ExecuteReader();
 
-            while (dr.Read()) 
+            while (dr.Read())
             {
                 Address address = new();
 
@@ -109,10 +110,10 @@ namespace Proj_Turismo_ADO.Services
                 address.Neighborhood = (string)dr["Neighborhood"];
                 address.ZipCode = (string)dr["ZipCode"];
                 address.Extension = (string)dr["Extension"];
-                address.IdCity = new City() 
+                address.IdCity = new City()
                 {
                     Id = (int)dr["CityId"],
-                    Description = (string)dr["CityDescription"] 
+                    Description = (string)dr["CityDescription"]
                 };
 
                 addresses.Add(address);

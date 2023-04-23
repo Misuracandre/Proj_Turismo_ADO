@@ -210,6 +210,7 @@ namespace Proj_Turismo_ADO.Services
             sb.Append("       a.Id AS OriginAddressId, a.Street AS OriginStreet, a.Number AS OriginNumber, a.Neighborhood AS OriginNeighborhood, a.ZipCode AS OriginZipCode, a.Extension AS OriginExtension, a.IdCity AS OriginCityId,");
             sb.Append("       b.Id AS DestinationAddressId, b.Street AS DestinationStreet, b.Number AS DestinationNumber, b.Neighborhood AS DestinationNeighborhood, b.ZipCode AS DestinationZipCode, b.Extension AS DestinationExtension, b.IdCity AS DestinationCityId,");
             sb.Append("       c.Id AS ClientId, c.Name, c.Phone,");
+            sb.Append("       d.Id AS CityId");
             sb.Append("       d.Description AS CityDescription");
             sb.Append("  FROM Package p ");
             sb.Append("  JOIN Address a ON p.OriginAddressId = a.Id ");

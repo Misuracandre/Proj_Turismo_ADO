@@ -121,6 +121,7 @@ namespace Proj_Turismo_ADO.Services
             sb.Append("       a.Neighborhood AS AddressNeighborhood,");
             sb.Append("       a.ZipCode AS AddressZipCode,");
             sb.Append("       a.Extension AS AddressExtension,");
+            sb.Append("       s.Id AS CityId");
             sb.Append("       s.Description AS CityDescription");
             sb.Append("  from Client c, ");
             sb.Append("  JOIN Address a ON c.IdAddress = a.Id");
