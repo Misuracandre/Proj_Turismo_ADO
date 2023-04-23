@@ -236,6 +236,19 @@ namespace Proj_Turismo_ADO.Services
                 command.ExecuteNonQuery();
             }
         }
+
+        public void DeleteTicket(int id)
+        {
+            using (SqlConnection connection = new SqlConnection(strConn))
+            {
+                string citySql = "DELETE FROM Ticket WHERE Id = @Id";
+
+                SqlCommand command = new SqlCommand(citySql, connection);
+
+                command.Parameters.AddWithValue("Id", id);
+                command.ExecuteNonQuery();
+            }
+        }
     }
 }
 

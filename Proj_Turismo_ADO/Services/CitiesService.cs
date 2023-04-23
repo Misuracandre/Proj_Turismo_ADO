@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using Proj_Turismo_ADO.Models;
@@ -81,6 +82,20 @@ namespace Proj_Turismo_ADO.Services
                 command.Parameters.AddWithValue("@Id", city.Id);
                 command.Parameters.AddWithValue("@Description", city.Description);
 
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void DeleteCity(int id)
+        {
+            using (SqlConnection connection = new SqlConnection(strConn))
+            {
+                string citySql = "DELETE FROM City WHERE Id = @Id";
+
+                SqlCommand command = new SqlCommand(citySql, connection);
+
+                command.Parameters.AddWithValue("Id", id);
                 connection.Open();
                 command.ExecuteNonQuery();
             }

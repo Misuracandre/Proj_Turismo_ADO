@@ -173,5 +173,18 @@ namespace Proj_Turismo_ADO.Services
                 command.ExecuteNonQuery();
             }
         }
+
+        public void DeleteClient(int id)
+        {
+            using (SqlConnection connection = new SqlConnection(strConn))
+            {
+                string citySql = "DELETE FROM Client WHERE Id = @Id";
+
+                SqlCommand command = new SqlCommand(citySql, connection);
+
+                command.Parameters.AddWithValue("Id", id);
+                command.ExecuteNonQuery();
+            }
+        }
     }
 }

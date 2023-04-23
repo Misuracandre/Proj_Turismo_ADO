@@ -126,9 +126,9 @@ namespace Proj_Turismo_ADO.Services
             using (SqlConnection connection = new SqlConnection(strConn))
             {
                 string sql = "UPDATE Address SET Street = @Street, Number = @Number, Nighborhood = @Neighborhood, ZipCode = @ZipCode, Extension = @Extension, IdCity = @IdCity WHERE Id = @Id";
-                
+
                 SqlCommand command = new SqlCommand(sql, connection);
-                
+
                 command.Parameters.AddWithValue("@Street", address.Street);
                 command.Parameters.AddWithValue("@Number", address.Number);
                 command.Parameters.AddWithValue("@Neighborhood", address.Neighborhood);
@@ -136,7 +136,21 @@ namespace Proj_Turismo_ADO.Services
                 command.Parameters.AddWithValue("@Extension", address.Extension);
                 command.Parameters.AddWithValue("@IdCity", address.IdCity.Id);
                 command.Parameters.AddWithValue("@Id", address.Id);
-                
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void DeleteAddress(int id)
+        {
+            using (SqlConnection connection = new SqlConnection(strConn))
+            {
+                string citySql = "DELETE FROM Address WHERE Id = @Id";
+
+                SqlCommand command = new SqlCommand(citySql, connection);
+
+                command.Parameters.AddWithValue("Id", id);
                 connection.Open();
                 command.ExecuteNonQuery();
             }

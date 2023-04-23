@@ -348,5 +348,18 @@ namespace Proj_Turismo_ADO.Services
                 command.ExecuteNonQuery();
             }
         }
+
+        public void DeletePackage(int id)
+        {
+            using (SqlConnection connection = new SqlConnection(strConn))
+            {
+                string citySql = "DELETE FROM Package WHERE Id = @Id";
+
+                SqlCommand command = new SqlCommand(citySql, connection);
+
+                command.Parameters.AddWithValue("Id", id);
+                command.ExecuteNonQuery();
+            }
+        }
     }
 }
