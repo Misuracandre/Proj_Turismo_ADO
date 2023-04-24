@@ -330,8 +330,9 @@ namespace Proj_Turismo_ADO.Services
             return packages;
         }
 
-        public void UpdatePackage(Package package)
+        public bool UpdatePackage(Package package)
         {
+            bool status = false;
             using (SqlConnection connection = new SqlConnection(strConn))
             {
                 string sql = "UPDATE Package SET Id = @Id, IdHotel = @IdHotel, IdTicket = @IdTicket, IdClient = @IdClient, Value = @Value WHERE Id = @Id";
@@ -347,6 +348,7 @@ namespace Proj_Turismo_ADO.Services
                 connection.Open();
                 command.ExecuteNonQuery();
             }
+            return true;
         }
 
         public void DeletePackage(int id)

@@ -53,3 +53,26 @@ else
 {
     Console.WriteLine("Erro ao inserir registro.");
 }
+
+new PackagesController().FindAll().ForEach(x => Console.WriteLine(x));
+
+Package updatedPackage = new Package();
+updatedPackage.Id = 1;
+updatedPackage.IdHotel = new Hotel { Id = 2};
+updatedPackage.IdTicket = new Ticket { Id = 3};
+updatedPackage.IdClient = new Client { Id = 2};
+updatedPackage.Value = 100;
+
+new PackagesController().UpdatePackage(updatedPackage);
+
+if (new PackagesController().UpdatePackage(package))
+{
+    Console.WriteLine("Registros alterados com sucesso!");
+}
+else
+{
+    Console.WriteLine("Erro ao atualizar registros.");
+}
+
+
+
